@@ -27,13 +27,13 @@
             "react-app/jest"
         ]
     },
+    "homepage": "https://rhkim1292.github.io/gifygram",
     "browserslist": {
         "production": [
             ">0.2%",
             "not dead",
             "not op_mini all"
         ],
-        "homepage": "https://rhkim1292.github.io/gifygram",
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",
