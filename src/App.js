@@ -6,7 +6,7 @@ import './styles/App.css';
 
 function App() {
     return (
-        <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className="app-container">
                 <Navbar />
                 <Routes>
