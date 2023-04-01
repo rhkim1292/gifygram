@@ -4,6 +4,8 @@ import Chat from './components/Chat.js';
 import Navbar from './components/Navbar.js';
 import './styles/App.css';
 
+//  AIzaSyBJOOwPOsBC3X1eeG_DphyGLUbxexnyzqU 
+
 function App() {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
