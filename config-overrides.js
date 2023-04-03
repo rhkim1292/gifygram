@@ -1,0 +1,12 @@
+module.exports = function override(config, env) {
+    console.log('React app rewired works!');
+    config.resolve.fallback = {
+        fs: false,
+        os: false,
+        path: false,
+        https: false,
+        url: false,
+        http: false,
+    };
+    return config;
+};
