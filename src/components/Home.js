@@ -1,12 +1,25 @@
 import '../styles/Home.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GifGrid from './GifGrid.js';
 
 function Home() {
     const [query, setQuery] = useState('');
     const [gifUrls, setGifUrls] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        searchGifs();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query]);
 
     const searchGifs = async () => {
+        if (!query) {
+            setGifUrls([]);
+            return;
+        }
+
+        setIsLoading(true);
+
         const apiKey = 'AIzaSyBJOOwPOsBC3X1eeG_DphyGLUbxexnyzqU';
         const clientkey = 'gifygram';
         var lmt = 8;
@@ -26,23 +39,34 @@ function Home() {
             lmt;
         const response = await fetch(url);
         const json = await response.json();
-        console.log(json.results);
         const urls = json.results.map((result) => {
             return result['media_formats']['nanogif'].url;
         });
-        console.log(urls);
         setGifUrls(urls);
+
+        setIsLoading(false);
     };
+
+    const clearSearch = () => {
+        setQuery('');
+        setGifUrls([]);
+    };
+
     return (
         <div className="home-container">
-            <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-            />
-            <button onClick={searchGifs}>Search</button>
-            <div className="results-container">
-                <GifGrid gifUrls={gifUrls} />
+            <div className="search-wrapper">
+                <input
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Search"
+                />
+                {query && (
+                    <button className="clear-btn" onClick={clearSearch}>
+                        x
+                    </button>
+                )}
             </div>
+            {isLoading ? <div>Loading...</div> : <GifGrid gifUrls={gifUrls} />}
         </div>
     );
 }
