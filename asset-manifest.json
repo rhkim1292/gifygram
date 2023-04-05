@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gifygram/static/css/main.53824d2c.css",
-    "main.js": "/gifygram/static/js/main.1f902502.js",
+    "main.css": "/gifygram/static/css/main.9cb274d1.css",
+    "main.js": "/gifygram/static/js/main.7d51063c.js",
     "index.html": "/gifygram/index.html",
-    "main.53824d2c.css.map": "/gifygram/static/css/main.53824d2c.css.map",
-    "main.1f902502.js.map": "/gifygram/static/js/main.1f902502.js.map"
+    "main.9cb274d1.css.map": "/gifygram/static/css/main.9cb274d1.css.map",
+    "main.7d51063c.js.map": "/gifygram/static/js/main.7d51063c.js.map"
   },
   "entrypoints": [
-    "static/css/main.53824d2c.css",
-    "static/js/main.1f902502.js"
+    "static/css/main.9cb274d1.css",
+    "static/js/main.7d51063c.js"
   ]
 }
