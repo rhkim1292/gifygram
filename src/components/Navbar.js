@@ -1,11 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import '../styles/Navbar.css';
+import gifygramLogo from '../images/gifygram-logo.png';
 
 function Navbar(props) {
     return (
         <ul className="navbar">
             <li>
-                <h3>gifygram</h3>
+                <div className="logo-container">
+                    <NavLink to="">
+                        <img
+                            className="gifygram-logo"
+                            src={gifygramLogo}
+                            alt="gifygram logo"
+                        />
+                    </NavLink>
+                </div>
             </li>
             <li>
                 <NavLink to="">Home</NavLink>
