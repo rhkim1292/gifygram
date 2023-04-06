@@ -3,8 +3,9 @@ ul.navbar {
     margin: 0;
     padding: 8px 12px 20px 12px;
     display: flex;
+    gap: 2px;
     flex-direction: column;
-    width: 245px;
+    min-width: 245px;
     height: 100vh;
     border-right: 1px solid rgb(219, 219, 219);
 }
@@ -20,4 +21,27 @@ ul.navbar li div.logo-container a img.gifygram-logo {
 ul.navbar li a {
     color: black;
     text-decoration: none;
+}
+
+ul.navbar li a.active {
+    font-weight: bold;
+}
+
+ul.navbar li a div.nav-btn {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+ul.navbar li a div.nav-btn:hover {
+    background-color: #fafafa;
+    border-radius: 24px;
+}
+
+ul.navbar li a div.nav-btn svg {
+    width: 24px;
+    height: 24px;
 }
