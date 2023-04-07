@@ -6,7 +6,7 @@ ul.navbar {
     gap: 2px;
     flex-direction: column;
     min-width: 245px;
-    height: 100vh;
+    min-height: 100vh;
     border-right: 1px solid rgb(219, 219, 219);
 }
 ul.navbar li div.logo-container {

@@ -1,0 +1,20 @@
+div.results-container {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    grid-template-columns: 316.984px 316.984px 316.984px;
+    grid-template-rows: 316.984px 316.984px 316.984px;
+    gap: 4px;
+}
+
+div.results-container div.image-cell {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #efefef;
+}
+
+div.results-container div.image-cell img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

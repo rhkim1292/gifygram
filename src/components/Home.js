@@ -25,7 +25,7 @@ function Home() {
 
         const apiKey = 'AIzaSyBJOOwPOsBC3X1eeG_DphyGLUbxexnyzqU';
         const clientkey = 'gifygram';
-        var lmt = 8;
+        var lmt = 9;
 
         // test search term
         var search_term = query;
