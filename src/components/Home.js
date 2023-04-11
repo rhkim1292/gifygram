@@ -24,8 +24,8 @@ function Home() {
         setIsLoading(true);
 
         const apiKey = 'AIzaSyBJOOwPOsBC3X1eeG_DphyGLUbxexnyzqU';
-        const clientkey = 'gifygram';
-        var lmt = 9;
+        const clientKey = 'gifygram';
+        var lmt = 100;
 
         // test search term
         var search_term = query;
@@ -37,7 +37,7 @@ function Home() {
             '&key=' +
             apiKey +
             '&client_key=' +
-            clientkey +
+            clientKey +
             '&limit=' +
             lmt;
         const response = await fetch(url);
@@ -46,7 +46,6 @@ function Home() {
             return result['media_formats']['nanogif'].url;
         });
         setGifUrls(urls);
-
         setIsLoading(false);
     };
 
@@ -99,7 +98,11 @@ function Home() {
                     />
                 )}
             </label>
-            {isLoading ? <div>Loading...</div> : <GifGrid gifUrls={gifUrls} />}
+            {isLoading ? (
+                <div>Loading...</div>
+            ) : (
+                <GifGrid gifUrls={gifUrls} query={query} />
+            )}
         </div>
     );
 }
