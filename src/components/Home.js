@@ -1,5 +1,5 @@
 import '../styles/Home.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GifGrid from './GifGrid.js';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -7,25 +7,47 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const [query, setQuery] = useState('');
     const [gifUrls, setGifUrls] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const isLoading = useRef(false);
     const [searchIsFocused, setSearchIsFocused] = useState(false);
+    const [pos, setPos] = useState('');
 
     useEffect(() => {
+        setGifUrls([]);
+        setPos('');
         searchGifs();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
-    const searchGifs = async () => {
+    useEffect(() => {
+        function handleScroll() {
+            const scrollTop = document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const offsetHeight = document.documentElement.offsetHeight;
+            const bottomThreshold = 5;
+
+            if (scrollTop + windowHeight >= offsetHeight - bottomThreshold) {
+                searchGifs();
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gifUrls]);
+
+    const searchGifs = () => {
+        if (isLoading.current) return;
         if (!query) {
             setGifUrls([]);
+            setPos('');
             return;
         }
 
-        setIsLoading(true);
+        isLoading.current = true;
 
         const apiKey = 'AIzaSyBJOOwPOsBC3X1eeG_DphyGLUbxexnyzqU';
         const clientKey = 'gifygram';
-        var lmt = 100;
+        var lmt = 9;
 
         // test search term
         var search_term = query;
@@ -39,19 +61,28 @@ function Home() {
             '&client_key=' +
             clientKey +
             '&limit=' +
-            lmt;
-        const response = await fetch(url);
-        const json = await response.json();
-        const urls = json.results.map((result) => {
-            return result['media_formats']['nanogif'].url;
-        });
-        setGifUrls(urls);
-        setIsLoading(false);
+            lmt +
+            '&pos=' +
+            pos;
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                const newGifs = data.results.map((gif) => {
+                    return gif.media_formats.gif.url;
+                });
+                setPos(data.next);
+                setGifUrls((prevGifs) => [...prevGifs, ...newGifs]);
+                isLoading.current = false;
+            })
+            .catch((error) => console.log(error));
     };
 
     const clearSearch = () => {
         setQuery('');
         setGifUrls([]);
+        setPos('');
     };
 
     const handleSearchFocus = () => {
@@ -98,11 +129,11 @@ function Home() {
                     />
                 )}
             </label>
-            {isLoading ? (
-                <div>Loading...</div>
-            ) : (
-                <GifGrid gifUrls={gifUrls} query={query} />
-            )}
+            {
+                /*isLoading ? <div>Loading...</div> : */ <GifGrid
+                    gifUrls={gifUrls}
+                />
+            }
         </div>
     );
 }
