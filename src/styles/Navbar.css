@@ -1,47 +1,47 @@
 ul.navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 8px 12px 20px 12px;
-    display: flex;
-    gap: 2px;
-    flex-direction: column;
-    min-width: 245px;
-    min-height: 100vh;
-    border-right: 1px solid rgb(219, 219, 219);
+	list-style-type: none;
+	margin: 0;
+	padding: 8px 12px 20px 12px;
+	display: flex;
+	gap: 2px;
+	flex-direction: column;
+	min-width: 245px;
+	min-height: 100vh;
+	border-right: 1px solid rgb(219, 219, 219);
 }
 ul.navbar li div.logo-container {
-    padding: 25px 12px 16px;
-    margin-bottom: 19px;
+	padding: 25px 12px 16px;
+	margin-bottom: 19px;
 }
 ul.navbar li div.logo-container a img.gifygram-logo {
-    width: 103px;
-    height: 29px;
+	width: 103px;
+	height: 29px;
 }
 
 ul.navbar li a {
-    color: black;
-    text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 ul.navbar li a.active {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 ul.navbar li a div.nav-btn {
-    width: 100%;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
+	width: 100%;
+	padding: 12px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	cursor: pointer;
 }
 
 ul.navbar li a div.nav-btn:hover {
-    background-color: #fafafa;
-    border-radius: 24px;
+	background-color: #fafafa;
+	border-radius: 24px;
 }
 
 ul.navbar li a div.nav-btn svg {
-    width: 24px;
-    height: 24px;
+	width: 24px;
+	height: 24px;
 }

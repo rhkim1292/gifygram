@@ -1,41 +1,41 @@
 div.home-container {
-    margin: 0px 24.3065px 30px;
-    padding: 24px 20px 0px;
+	margin: 0px 24.3065px 30px;
+	padding: 24px 20px 0px;
 }
 
 label.search-wrapper {
-    position: relative;
-    display: flex;
-    gap: 9px;
-    align-items: center;
+	position: relative;
+	display: flex;
+	gap: 9px;
+	align-items: center;
 
-    border: 0px;
-    border-radius: 8px;
-    background: #efefef;
-    padding: 0px 16px;
-    color: #6c757d;
-    cursor: text;
-    width: 316.984px;
-    height: 40px;
-    margin-bottom: 16px;
+	border: 0px;
+	border-radius: 8px;
+	background: #efefef;
+	padding: 0px 16px;
+	color: #6c757d;
+	cursor: text;
+	width: 316.984px;
+	height: 40px;
+	margin-bottom: 16px;
 }
 
 label.search-wrapper input {
-    outline: none;
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    width: 100%;
+	outline: none;
+	border: none;
+	background: transparent;
+	font-size: 16px;
+	width: 100%;
 }
 
 label.search-wrapper input:not(:focus) {
-    color: #737373;
+	color: #737373;
 }
 
 label.search-wrapper svg.clear-btn {
-    position: absolute;
-    right: 8px;
-    cursor: pointer;
-    width: 15px;
-    color: #c8c8c8;
+	position: absolute;
+	right: 8px;
+	cursor: pointer;
+	width: 15px;
+	color: #c8c8c8;
 }
