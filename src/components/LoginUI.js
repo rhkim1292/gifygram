@@ -1,31 +1,20 @@
 import firebase from 'firebase/compat/app';
-import { auth, firebaseConfig } from '../index.js';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
+import { useEffect } from 'react';
+import { uiConfig } from '../index.js';
+import { Route } from 'react-router-dom';
 
 // Guide: https://github.com/firebase/firebaseui-web
+
 const LoginUI = () => {
-	const uiConfig = {
-		signInSuccessUrl: process.env.PUBLIC_URL,
-		signInOptions: [
-			// Leave the lines as is for the providers you want to offer your users.
-			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-			firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-			firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-			firebase.auth.GithubAuthProvider.PROVIDER_ID,
-			firebase.auth.EmailAuthProvider.PROVIDER_ID,
-			firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-			firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
-		],
-		// tosUrl and privacyPolicyUrl accept either url string or a callback
-		// function.
-		// Terms of service url/callback.
-		tosUrl: '<your-tos-url>',
-		// Privacy policy url/callback.
-		privacyPolicyUrl: function () {
-			window.location.assign('<your-privacy-policy-url>');
-		},
-	};
+	useEffect(() => {
+		console.log('rendered LoginUI');
+		const ui =
+			firebaseui.auth.AuthUI.getInstance() ||
+			new firebaseui.auth.AuthUI(firebase.auth());
+		ui.start('#firebaseui-auth-container', uiConfig);
+	}, []);
 	// const uiConfig = {
 	// 	signInFlow: 'popup',
 	// 	signInOptions: [auth.GoogleAuthProvider.PROVIDER_ID],
@@ -43,11 +32,7 @@ const LoginUI = () => {
 	// 	},
 	// };
 
-	return (
-		<FirebaseAuth firebase={firebase} {...firebaseConfig}>
-			<StyledFirebaseAuth uiConfig={uiConfig} />
-		</FirebaseAuth>
-	);
+	return <div id="firebaseui-auth-container"></div>;
 };
 
 export default LoginUI;
