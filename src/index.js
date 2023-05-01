@@ -7,6 +7,7 @@ import 'firebaseui/dist/firebaseui.css';
 import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 import './styles/index.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyBqfChKiDsIQBbVlcLA23LCe5ByM15yKz4',
@@ -19,9 +20,9 @@ const firebaseConfig = {
 };
 
 const uiConfig = {
-	// signInSuccessUrl: process.env.PUBLIC_URL,
+	signInFlow: 'popup',
+	signInSuccessUrl: '/gifygram/',
 	signInOptions: [
-		// Leave the lines as is for the providers you want to offer your users.
 		{
 			provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
 			signInMethod:
@@ -33,18 +34,7 @@ const uiConfig = {
 				prompt: 'select_account',
 			},
 		},
-		// firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-		// firebase.auth.EmailAuthProvider.PROVIDER_ID,
-		// firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
 	],
-	// tosUrl and privacyPolicyUrl accept either url string or a callback
-	// function.
-	// Terms of service url/callback.
-	// tosUrl: process.env.PUBLIC_URL,
-	// Privacy policy url/callback.
-	// privacyPolicyUrl: function () {
-	// 	window.location.assign(process.env.PUBLIC_URL);
-	// },
 };
 
 const app = firebase.initializeApp(firebaseConfig);
@@ -55,7 +45,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 	<React.StrictMode>
-		<App />
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
+			<App />
+		</BrowserRouter>
 	</React.StrictMode>
 );
 

@@ -3,9 +3,14 @@ import '../styles/Navbar.css';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gifygramLogo from '../images/gifygram-logo.png';
-import { faHouse, faComment } from '@fortawesome/free-solid-svg-icons';
+import {
+	faHouse,
+	faComment,
+	faRightFromBracket,
+	faPortrait,
+} from '@fortawesome/free-solid-svg-icons';
 
-function Navbar() {
+function Navbar({ userRef }) {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
@@ -53,6 +58,22 @@ function Navbar() {
 					<div className="nav-btn">
 						<FontAwesomeIcon icon={faComment} />
 						Chat
+					</div>
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="">
+					<div className="nav-btn">
+						<FontAwesomeIcon icon={faPortrait} />
+						{userRef.current.displayName}
+					</div>
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="login">
+					<div className="nav-btn">
+						<FontAwesomeIcon icon={faRightFromBracket} />
+						Log out
 					</div>
 				</NavLink>
 			</li>

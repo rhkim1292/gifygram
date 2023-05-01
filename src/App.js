@@ -1,24 +1,43 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase/compat/app';
-import Username from './components/Username.js';
+import { Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import LoginUI from './components/LoginUI.js';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MainUI from './components/MainUI.js';
+import gifygramLogoSmall from './images/gifygram-logo-small.png';
 
 function App() {
-	const [user, setUser] = useState(null);
+	const userRef = useRef(null);
+	const [userLoaded, setUserLoaded] = useState(false);
+
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged((user) => {
+			userRef.current = user;
+			setUserLoaded(true);
+		});
+	}, []);
+
+	if (!userLoaded) {
+		return (
+			<div className="loading-container">
+				<img
+					className="gifygram-logo-small"
+					src={gifygramLogoSmall}
+					alt="gifygram logo small"
+				/>
+			</div>
+		);
+	}
 
 	return (
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
-			{user ? <Navigate to="/" /> : <Navigate to="/login" />}
-			<Routes>
-				<Route exact path="/" element={<MainUI />} />
-				<Route exact path="/login" element={<LoginUI />} />
-				<Route exact path="/username" element={<Username />} />
-			</Routes>
-		</BrowserRouter>
+		<Routes>
+			<Route
+				exact
+				path="/login"
+				element={<LoginUI userRef={userRef} />}
+			/>
+			<Route exact path="/*" element={<MainUI userRef={userRef} />} />
+		</Routes>
 	);
 }
 
