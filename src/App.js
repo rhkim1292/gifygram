@@ -4,7 +4,7 @@ import './styles/App.css';
 import LoginUI from './components/LoginUI.js';
 import { useEffect, useRef, useState } from 'react';
 import MainUI from './components/MainUI.js';
-import gifygramLogoSmall from './images/gifygram-logo-small.png';
+import Loading from './components/Loading.js';
 
 function App() {
 	const userRef = useRef(null);
@@ -12,21 +12,15 @@ function App() {
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((user) => {
+			console.log('Auth State Changed!');
 			userRef.current = user;
 			setUserLoaded(true);
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (!userLoaded) {
-		return (
-			<div className="loading-container">
-				<img
-					className="gifygram-logo-small"
-					src={gifygramLogoSmall}
-					alt="gifygram logo small"
-				/>
-			</div>
-		);
+		return <Loading />;
 	}
 
 	return (
