@@ -1,0 +1,25 @@
+div.login-page {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+div.loginui-container {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	border: 1px solid #dbdbdb;
+	border-radius: 1px;
+	justify-content: center;
+	align-items: center;
+}
+
+div.loginui-container img.gifygram-logo {
+	width: 175px;
+	height: 51px;
+	margin-top: 36px;
+}
+
+div.loginui-container div#firebaseui-auth-container {
+	margin-top: 24px;
+}

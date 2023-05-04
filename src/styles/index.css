@@ -1,3 +1,31 @@
+@font-face {
+	font-family: 'BlinkMacSystemFont';
+	font-weight: 900;
+	font-style: normal;
+	src: url('../fonts/BlinkMacSystemFont-Black.woff2');
+}
+
+@font-face {
+	font-family: 'BlinkMacSystemFont';
+	font-weight: bold;
+	font-style: normal;
+	src: url('../fonts/BlinkMacSystemFont-Bold.woff2');
+}
+
+@font-face {
+	font-family: 'BlinkMacSystemFont';
+	font-weight: 500;
+	font-style: normal;
+	src: url('../fonts/BlinkMacSystemFont-Medium.woff2');
+}
+
+@font-face {
+	font-family: 'BlinkMacSystemFont';
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/BlinkMacSystemFont-Regular.woff2');
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -6,4 +34,10 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+}
+
+body {
+	font-family: 'BlinkMacSystemFont';
+	font-weight: normal;
+	font-style: normal;
 }

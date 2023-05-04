@@ -3,6 +3,8 @@ import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { useEffect } from 'react';
 import { uiConfig } from '../index.js';
+import '../styles/LoginUI.css';
+import gifygramLogo from '../images/gifygram-logo.png';
 
 // Guide: https://github.com/firebase/firebaseui-web
 
@@ -17,8 +19,15 @@ const LoginUI = ({ userRef }) => {
 	}, [userRef]);
 
 	return (
-		<div>
-			<div id="firebaseui-auth-container"></div>
+		<div className="login-page">
+			<div className="loginui-container">
+				<img
+					className="gifygram-logo"
+					src={gifygramLogo}
+					alt="gifygram logo"
+				/>
+				<div id="firebaseui-auth-container"></div>
+			</div>
 		</div>
 	);
 };

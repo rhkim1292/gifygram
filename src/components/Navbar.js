@@ -7,7 +7,6 @@ import {
 	faHouse,
 	faComment,
 	faRightFromBracket,
-	faPortrait,
 } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar({ userRef }) {
@@ -62,9 +61,9 @@ function Navbar({ userRef }) {
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="">
+				<NavLink to="profile">
 					<div className="nav-btn">
-						<FontAwesomeIcon icon={faPortrait} />
+						<img src={userRef.current.photoURL} alt="profile" />
 						{userRef.current.displayName}
 					</div>
 				</NavLink>

@@ -68,7 +68,6 @@ function Home() {
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				const newGifs = data.results.map((gif) => {
 					return gif.media_formats.gif.url;
 				});

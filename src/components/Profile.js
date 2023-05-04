@@ -1,31 +1,14 @@
-import firebase from 'firebase/compat/app';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../styles/Profile.css';
 
-const Profile = ({ user, setUser }) => {
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		firebase.auth().onAuthStateChanged((user) => {
-			setUser(user);
-		});
-	}, [setUser]);
-
-	const handleLogout = () => {
-		navigate('/login');
-	};
-
+const Profile = ({ user }) => {
 	return (
-		<div>
+		<div className="profile-container">
 			<h1>Profile</h1>
-			{user && (
-				<div>
-					<p>Name: {user.displayName}</p>
-					<p>Email: {user.email}</p>
-					<img src={user.photoURL} alt="User profile" />
-					<button onClick={handleLogout}>Logout</button>
-				</div>
-			)}
+			<div>
+				<p>Name: {user.displayName}</p>
+				<p>Email: {user.email}</p>
+				<img src={user.photoURL} alt="User profile" />
+			</div>
 		</div>
 	);
 };

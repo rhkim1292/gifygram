@@ -1,4 +1,5 @@
 import gifygramLogoSmall from '../images/gifygram-logo-small.png';
+import '../styles/Loading.css';
 
 const Loading = () => {
 	return (
