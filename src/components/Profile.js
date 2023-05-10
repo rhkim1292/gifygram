@@ -1,7 +1,6 @@
 import '../styles/Profile.css';
 
 const Profile = ({ user }) => {
-	console.log(user);
 	return (
 		<div className="profile-container">
 			<h1>Profile</h1>
