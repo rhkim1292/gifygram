@@ -37,11 +37,6 @@ function Home() {
 
 	const searchGifs = () => {
 		if (isLoading.current) return;
-		// if (!query) {
-		// 	setGifUrls([]);
-		// 	setPos('');
-		// 	return;
-		// }
 
 		isLoading.current = true;
 

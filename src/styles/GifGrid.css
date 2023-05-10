@@ -12,10 +12,38 @@ div.results-container div.image-cell {
 	display: flex;
 	align-items: center;
 	background-color: #efefef;
+	position: relative;
 }
 
 div.results-container div.image-cell img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+
+div.results-container div.image-cell div.image-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 316.984px;
+	height: 316.984px;
+	background-color: transparent;
+	color: transparent;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 7px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+div.results-container div.image-cell div.image-overlay:hover {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: white;
+}
+
+div.results-container div.image-cell div.image-overlay svg {
+	width: 19px;
+	height: 19px;
 }
