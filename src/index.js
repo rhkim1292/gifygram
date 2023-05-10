@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-// import LoginUI from './components/LoginUI';
 import firebase from 'firebase/compat/app';
 import 'firebaseui/dist/firebaseui.css';
 import { getFirestore } from 'firebase/firestore';

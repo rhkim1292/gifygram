@@ -1,6 +1,8 @@
 import '../styles/GifGrid.css';
 
 const GifGrid = ({ gifUrls }) => {
+	if (gifUrls.length === 0) return null;
+
 	return (
 		<div className="results-container">
 			{gifUrls.map((url, index) => (

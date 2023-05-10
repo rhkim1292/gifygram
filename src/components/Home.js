@@ -128,11 +128,7 @@ function Home() {
 					/>
 				)}
 			</label>
-			{
-				/*isLoading ? <div>Loading...</div> : */ <GifGrid
-					gifUrls={gifUrls}
-				/>
-			}
+			{<GifGrid gifUrls={gifUrls} />}
 		</div>
 	);
 }
