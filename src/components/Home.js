@@ -37,11 +37,11 @@ function Home() {
 
 	const searchGifs = () => {
 		if (isLoading.current) return;
-		if (!query) {
-			setGifUrls([]);
-			setPos('');
-			return;
-		}
+		// if (!query) {
+		// 	setGifUrls([]);
+		// 	setPos('');
+		// 	return;
+		// }
 
 		isLoading.current = true;
 
@@ -53,17 +53,31 @@ function Home() {
 		var search_term = query;
 
 		// using default locale of en_US
-		var url =
-			'https://tenor.googleapis.com/v2/search?q=' +
-			search_term +
-			'&key=' +
-			apiKey +
-			'&client_key=' +
-			clientKey +
-			'&limit=' +
-			lmt +
-			'&pos=' +
-			pos;
+		var url;
+		if (!query) {
+			url =
+				'https://tenor.googleapis.com/v2/featured?' +
+				'&key=' +
+				apiKey +
+				'&client_key=' +
+				clientKey +
+				'&limit=' +
+				lmt +
+				'&pos=' +
+				pos;
+		} else {
+			url =
+				'https://tenor.googleapis.com/v2/search?q=' +
+				search_term +
+				'&key=' +
+				apiKey +
+				'&client_key=' +
+				clientKey +
+				'&limit=' +
+				lmt +
+				'&pos=' +
+				pos;
+		}
 
 		fetch(url)
 			.then((response) => response.json())
