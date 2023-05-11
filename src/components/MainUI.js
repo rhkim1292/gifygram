@@ -25,6 +25,7 @@ const MainUI = ({ userRef }) => {
 	}, []);
 
 	useEffect(() => {
+		if (!modalCloseBtn.current) return;
 		if (modalIsOpen) {
 			lastScrollHeight.current = document.documentElement.scrollTop;
 			document.documentElement.style.top = `-${lastScrollHeight.current}px`;
