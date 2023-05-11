@@ -2,3 +2,13 @@ div.app-container {
 	display: flex;
 	margin-left: 245px;
 }
+
+.no-scroll {
+	position: fixed;
+	inline-size: 100%;
+	overflow-y: scroll;
+}
+
+.modal-closed-btn {
+	display: none;
+}

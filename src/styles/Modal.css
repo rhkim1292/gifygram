@@ -1,0 +1,31 @@
+dialog.modal-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	padding: 0;
+	border-radius: 4px;
+	border: 0px;
+	outline: none;
+}
+
+dialog.modal-container::backdrop {
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+dialog.modal-container img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+dialog.modal-container svg.modal-close-btn {
+	position: fixed;
+	top: 16px;
+	right: 16px;
+	cursor: pointer;
+	list-style: none;
+	text-align: inherit;
+	color: white;
+	width: 24px;
+	height: 24px;
+}
