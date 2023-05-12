@@ -9,16 +9,24 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 	const [gifUrls, setGifUrls] = useState([]);
 	const isLoading = useRef(false);
 	const [searchIsFocused, setSearchIsFocused] = useState(false);
-	const [pos, setPos] = useState('');
+	const pos = useRef('');
 
 	useEffect(() => {
 		setGifUrls([]);
-		setPos('');
+		pos.current = '';
 		searchGifs();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	useEffect(() => {
+		function checkScrollableThenSearch() {
+			if (
+				document.documentElement.scrollHeight <=
+				document.documentElement.clientHeight
+			)
+				searchGifs();
+		}
+
 		function handleScroll() {
 			const scrollTop = document.documentElement.scrollTop;
 			const windowHeight = window.innerHeight;
@@ -30,14 +38,14 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 			}
 		}
 
-		if (
-			document.documentElement.scrollHeight <=
-			document.documentElement.clientHeight
-		)
-			searchGifs();
+		checkScrollableThenSearch();
 
 		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		window.addEventListener('resize', checkScrollableThenSearch);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('resize', checkScrollableThenSearch);
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [gifUrls]);
 
@@ -65,7 +73,7 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 				'&limit=' +
 				lmt +
 				'&pos=' +
-				pos;
+				pos.current;
 		} else {
 			url =
 				'https://tenor.googleapis.com/v2/search?q=' +
@@ -77,7 +85,7 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 				'&limit=' +
 				lmt +
 				'&pos=' +
-				pos;
+				pos.current;
 		}
 
 		fetch(url, {
@@ -94,7 +102,7 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 				const newGifs = data.results.map((gif) => {
 					return gif.media_formats.gif.url;
 				});
-				setPos(data.next);
+				pos.current = data.next;
 				setGifUrls((prevGifs) => [...prevGifs, ...newGifs]);
 				isLoading.current = false;
 			})
@@ -104,7 +112,7 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 	const clearSearch = () => {
 		setQuery('');
 		setGifUrls([]);
-		setPos('');
+		pos.current = '';
 	};
 
 	const handleSearchFocus = () => {

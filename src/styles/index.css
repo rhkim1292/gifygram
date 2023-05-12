@@ -36,6 +36,10 @@ body {
 	padding: 0;
 }
 
+html {
+	overflow-y: scroll;
+}
+
 body {
 	font-family: 'BlinkMacSystemFont';
 	font-weight: normal;

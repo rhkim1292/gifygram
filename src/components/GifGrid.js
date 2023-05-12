@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const GifGrid = ({ gifUrls, setModalContent, modal, setModalIsOpen }) => {
-	if (gifUrls.length === 0) return null;
-
 	const handleClick = (url, index) => {
 		if (!modal.current) return;
 		setModalIsOpen(true);
