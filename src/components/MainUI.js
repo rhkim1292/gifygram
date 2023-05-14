@@ -46,18 +46,6 @@ const MainUI = ({ userRef }) => {
 		});
 	}, [userRef]);
 
-	useEffect(() => {
-		const img = document.querySelector(
-			'dialog.modal-container div.modal-content div.modal-img-container img'
-		);
-		if (!img) return;
-		if (img.naturalHeight > img.naturalWidth) {
-			img.classList.add('portrait');
-		} else {
-			img.classList.add('landscape');
-		}
-	}, [modalContent]);
-
 	if (!userRef.current) return <Navigate to="/login" />;
 
 	return (

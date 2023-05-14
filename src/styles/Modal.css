@@ -1,3 +1,8 @@
+:root {
+	--modal-top-margin: 100px;
+	--modal-height: calc(100vh - var(var(--modal-top-margin)));
+}
+
 dialog.modal-container {
 	display: flex;
 	justify-content: center;
@@ -21,17 +26,26 @@ dialog.modal-container div.modal-content {
 dialog.modal-container div.modal-content div.modal-img-container {
 	display: flex;
 	background: black;
+	justify-content: center;
 	align-items: center;
 }
 
-dialog.modal-container div.modal-content div.modal-img-container img.landscape {
-	max-height: 95.5vh;
-	width: 84.6vw;
+.landscape {
+	max-height: calc(100vh - 47px);
+	width: calc(100vw - 199px);
 }
 
-dialog.modal-container div.modal-content div.modal-img-container img.portrait {
-	height: 95.5vh;
-	max-width: 84.6vw;
+.portrait {
+	height: calc(100vh - 47px);
+	max-width: calc(100vw - 199px);
+}
+
+dialog.modal-container div.modal-content div.modal-img-container.landscape img {
+	/* min-height: calc(100vh - 47px); */
+	/* max-width: calc(100vw - 199px); */
+	/* max-height: calc(100vh - 47px); */
+	/* width: calc(100vw - 199px); */
+	/* max-height: 100%; */
 }
 
 dialog.modal-container div.modal-content div.modal-desc-container {

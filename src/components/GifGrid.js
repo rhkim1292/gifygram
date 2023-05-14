@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const GifGrid = ({ gifUrls, setModalContent, modal, setModalIsOpen }) => {
 	const handleClick = (url, index) => {
 		if (!modal.current) return;
-		setModalIsOpen(true);
+
 		setModalContent(
 			<div className="modal-content">
 				<div className="modal-img-container">
@@ -42,6 +42,7 @@ const GifGrid = ({ gifUrls, setModalContent, modal, setModalIsOpen }) => {
 			</div>
 		);
 		modal.current.showModal();
+		setModalIsOpen(true);
 	};
 
 	return (
