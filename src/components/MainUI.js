@@ -72,6 +72,7 @@ const MainUI = ({ userRef }) => {
 				content={modalContent}
 				setModalContent={setModalContent}
 				setModalIsOpen={setModalIsOpen}
+				modalIsOpen={modalIsOpen}
 			/>
 		</div>
 	);

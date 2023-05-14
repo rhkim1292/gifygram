@@ -1,41 +1,72 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/Modal.css';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-const Modal = ({ content, setModalContent, setModalIsOpen }) => {
+const Modal = ({ content, setModalContent, setModalIsOpen, modalIsOpen }) => {
+	const img = useRef(null);
+	const imgContainer = useRef(null);
+
 	useEffect(() => {
-		const img = document.querySelector('div.modal-img-container img');
+		const handleModalResize = () => {
+			if (!img.current) return;
 
-		const imgContainer = document.querySelector(
+			const imgClientAR =
+				img.current.clientHeight / img.current.clientWidth;
+			const imgNatAR =
+				img.current.naturalHeight / img.current.naturalWidth;
+
+			if (imgClientAR - imgNatAR < -0.01) {
+				imgContainer.current.classList.remove('landscape');
+				img.current.classList.remove('landscape');
+				imgContainer.current.classList.add('portrait');
+				img.current.classList.add('portrait');
+			} else if (imgClientAR - imgNatAR > 0.01) {
+				imgContainer.current.classList.remove('portrait');
+				img.current.classList.remove('portrait');
+				imgContainer.current.classList.add('landscape');
+				img.current.classList.add('landscape');
+			}
+		};
+		if (!modalIsOpen) {
+			window.removeEventListener('resize', handleModalResize);
+			return;
+		}
+		window.addEventListener('resize', handleModalResize);
+	}, [modalIsOpen]);
+
+	useEffect(() => {
+		img.current = document.querySelector('div.modal-img-container img');
+
+		imgContainer.current = document.querySelector(
 			'dialog.modal-container div.modal-content div.modal-img-container'
 		);
 
-		if (!img) return;
+		if (!img.current) return;
 
-		if (img.naturalHeight >= img.naturalWidth) {
-			imgContainer.classList.add('portrait');
-			img.classList.add('portrait');
+		if (img.current.naturalHeight >= img.current.naturalWidth) {
+			imgContainer.current.classList.add('portrait');
+			img.current.classList.add('portrait');
 			// modal.current.classList.add('portrait');
 		} else {
-			imgContainer.classList.add('landscape');
-			img.classList.add('landscape');
+			imgContainer.current.classList.add('landscape');
+			img.current.classList.add('landscape');
 			// modal.current.classList.add('landscape');
 		}
 
-		const imgClientAR = img.clientHeight / img.clientWidth;
-		const imgNatAR = img.naturalHeight / img.naturalWidth;
+		const imgClientAR = img.current.clientHeight / img.current.clientWidth;
+		const imgNatAR = img.current.naturalHeight / img.current.naturalWidth;
 
 		if (imgClientAR - imgNatAR < -0.01) {
-			imgContainer.classList.remove('landscape');
-			img.classList.remove('landscape');
-			imgContainer.classList.add('portrait');
-			img.classList.add('portrait');
+			imgContainer.current.classList.remove('landscape');
+			img.current.classList.remove('landscape');
+			imgContainer.current.classList.add('portrait');
+			img.current.classList.add('portrait');
 		} else if (imgClientAR - imgNatAR > 0.01) {
-			imgContainer.classList.remove('portrait');
-			img.classList.remove('portrait');
-			imgContainer.classList.add('landscape');
-			img.classList.add('landscape');
+			imgContainer.current.classList.remove('portrait');
+			img.current.classList.remove('portrait');
+			imgContainer.current.classList.add('landscape');
+			img.current.classList.add('landscape');
 		}
 	}, [content]);
 

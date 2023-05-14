@@ -40,14 +40,6 @@ dialog.modal-container div.modal-content div.modal-img-container {
 	max-width: calc(100vw - 199px);
 }
 
-dialog.modal-container div.modal-content div.modal-img-container.landscape img {
-	/* min-height: calc(100vh - 47px); */
-	/* max-width: calc(100vw - 199px); */
-	/* max-height: calc(100vh - 47px); */
-	/* width: calc(100vw - 199px); */
-	/* max-height: 100%; */
-}
-
 dialog.modal-container div.modal-content div.modal-desc-container {
 	padding: 14px 16px;
 }
