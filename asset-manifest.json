@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/gifygram/static/css/main.8260a684.css",
-    "main.js": "/gifygram/static/js/main.01b567e8.js",
+    "main.css": "/gifygram/static/css/main.3d00737d.css",
+    "main.js": "/gifygram/static/js/main.88a82fcf.js",
     "static/media/BlinkMacSystemFont-Medium.woff2": "/gifygram/static/media/BlinkMacSystemFont-Medium.518d98fb6a891dbb5704.woff2",
     "static/media/BlinkMacSystemFont-Bold.woff2": "/gifygram/static/media/BlinkMacSystemFont-Bold.1170febf2d45a9a332f9.woff2",
     "static/media/BlinkMacSystemFont-Black.woff2": "/gifygram/static/media/BlinkMacSystemFont-Black.e7c6d1e9201d0121658b.woff2",
     "static/media/BlinkMacSystemFont-Regular.woff2": "/gifygram/static/media/BlinkMacSystemFont-Regular.2165f03f632b4df5b740.woff2",
     "index.html": "/gifygram/index.html",
-    "main.8260a684.css.map": "/gifygram/static/css/main.8260a684.css.map",
-    "main.01b567e8.js.map": "/gifygram/static/js/main.01b567e8.js.map"
+    "main.3d00737d.css.map": "/gifygram/static/css/main.3d00737d.css.map",
+    "main.88a82fcf.js.map": "/gifygram/static/js/main.88a82fcf.js.map"
   },
   "entrypoints": [
-    "static/css/main.8260a684.css",
-    "static/js/main.01b567e8.js"
+    "static/css/main.3d00737d.css",
+    "static/js/main.88a82fcf.js"
   ]
 }
