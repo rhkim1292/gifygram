@@ -1,7 +1,6 @@
 div.results-container {
 	display: grid;
 	max-width: 958.952px;
-	width: 958.952px;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 4px;
 }
