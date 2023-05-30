@@ -39,7 +39,7 @@ const Home = ({
 			const scrollTop = document.documentElement.scrollTop;
 			const windowHeight = window.innerHeight;
 			const offsetHeight = document.documentElement.offsetHeight;
-			const bottomThreshold = 5;
+			const bottomThreshold = 1;
 
 			if (scrollTop + windowHeight >= offsetHeight - bottomThreshold) {
 				searchGifs();
