@@ -3,9 +3,10 @@ import '../styles/Modal.css';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef } from 'react';
 
-const Modal = ({ content, setModalContent, setModalIsOpen, modalIsOpen }) => {
+const Modal = ({ content, setModalContent, modalIsOpen, setModalIsOpen }) => {
 	const img = useRef(null);
 	const imgContainer = useRef(null);
+	const likeBtn = useRef(null);
 
 	useEffect(() => {
 		const handleModalResize = () => {
@@ -36,10 +37,18 @@ const Modal = ({ content, setModalContent, setModalIsOpen, modalIsOpen }) => {
 	}, [modalIsOpen]);
 
 	useEffect(() => {
+		// const handleLikeClick = () => {
+		// 	// getDoc(doc(db, ))
+		// };
+
 		img.current = document.querySelector('div.modal-img-container img');
 
 		imgContainer.current = document.querySelector(
 			'dialog.modal-container div.modal-content div.modal-img-container'
+		);
+
+		likeBtn.current = document.querySelector(
+			'div.modal-desc-container svg.like-btn'
 		);
 
 		if (!img.current) return;
@@ -47,11 +56,9 @@ const Modal = ({ content, setModalContent, setModalIsOpen, modalIsOpen }) => {
 		if (img.current.naturalHeight >= img.current.naturalWidth) {
 			imgContainer.current.classList.add('portrait');
 			img.current.classList.add('portrait');
-			// modal.current.classList.add('portrait');
 		} else {
 			imgContainer.current.classList.add('landscape');
 			img.current.classList.add('landscape');
-			// modal.current.classList.add('landscape');
 		}
 
 		const imgClientAR = img.current.clientHeight / img.current.clientWidth;
@@ -68,6 +75,8 @@ const Modal = ({ content, setModalContent, setModalIsOpen, modalIsOpen }) => {
 			imgContainer.current.classList.add('landscape');
 			img.current.classList.add('landscape');
 		}
+
+		// likeBtn.current.addEventListener('click');
 	}, [content]);
 
 	const handleCloseModal = (e) => {

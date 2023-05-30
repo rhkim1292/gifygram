@@ -9,7 +9,7 @@ import {
 	faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Navbar({ userRef }) {
+function Navbar({ userData }) {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
@@ -63,8 +63,8 @@ function Navbar({ userRef }) {
 			<li>
 				<NavLink to="profile">
 					<div className="nav-btn">
-						<img src={userRef.current.photoURL} alt="profile" />
-						{userRef.current.displayName}
+						<img src={userData.current.photoURL} alt="profile" />
+						{userData.current.displayName}
 					</div>
 				</NavLink>
 			</li>

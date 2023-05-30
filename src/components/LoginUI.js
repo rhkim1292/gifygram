@@ -1,22 +1,22 @@
-import firebase from "firebase/compat/app";
-import * as firebaseui from "firebaseui";
-import "firebaseui/dist/firebaseui.css";
-import { useEffect } from "react";
-import { uiConfig } from "../index.js";
-import "../styles/LoginUI.css";
-import gifygramLogo from "../images/gifygram-logo.png";
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
+import { useEffect } from 'react';
+import { uiConfig } from '../index.js';
+import '../styles/LoginUI.css';
+import gifygramLogo from '../images/gifygram-logo.png';
 
 // Guide: https://github.com/firebase/firebaseui-web
 
-const LoginUI = ({ userRef }) => {
+const LoginUI = ({ userData }) => {
 	useEffect(() => {
 		firebase.auth().signOut();
-		userRef.current = null;
+		userData.current = null;
 		const ui =
 			firebaseui.auth.AuthUI.getInstance() ||
 			new firebaseui.auth.AuthUI(firebase.auth());
-		ui.start("#firebaseui-auth-container", uiConfig);
-	}, [userRef]);
+		ui.start('#firebaseui-auth-container', uiConfig);
+	}, [userData]);
 
 	return (
 		<div className="login-page">

@@ -3,8 +3,16 @@ import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GifGrid from './GifGrid.js';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { db } from '../index.js';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-const Home = ({ setModalContent, modal, setModalIsOpen }) => {
+const Home = ({
+	userData,
+	setModalContent,
+	modal,
+	modalIsOpenRef,
+	setModalIsOpen,
+}) => {
 	const [query, setQuery] = useState('');
 	const [gifUrls, setGifUrls] = useState([]);
 	const isLoading = useRef(false);
@@ -100,7 +108,13 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 			.then((response) => response.json())
 			.then((data) => {
 				const newGifs = data.results.map((gif) => {
-					return gif.media_formats.gif.url;
+					getDoc(doc(db, 'gif-data', gif.id)).then((docSnap) => {
+						if (docSnap.exists()) return;
+						setDoc(doc(db, 'gif-data', gif.id), {
+							usersLiked: [],
+						});
+					});
+					return { id: gif.id, url: gif.media_formats.gif.url };
 				});
 				pos.current = data.next;
 				setGifUrls((prevGifs) => [...prevGifs, ...newGifs]);
@@ -161,9 +175,11 @@ const Home = ({ setModalContent, modal, setModalIsOpen }) => {
 			</label>
 			{
 				<GifGrid
+					userData={userData}
 					gifUrls={gifUrls}
 					setModalContent={setModalContent}
 					modal={modal}
+					modalIsOpenRef={modalIsOpenRef}
 					setModalIsOpen={setModalIsOpen}
 				/>
 			}

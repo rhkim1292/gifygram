@@ -28,6 +28,7 @@ dialog.modal-container div.modal-content div.modal-img-container {
 	background: black;
 	justify-content: center;
 	align-items: center;
+	user-select: none;
 }
 
 .landscape {
@@ -44,7 +45,11 @@ dialog.modal-container div.modal-content div.modal-desc-container {
 	padding: 14px 16px;
 }
 
-dialog.modal-container div.modal-content div.modal-desc-container svg.like-btn {
+dialog.modal-container div.modal-content div.modal-desc-container svg.like-btn,
+dialog.modal-container
+	div.modal-content
+	div.modal-desc-container
+	svg.unlike-btn {
 	cursor: pointer;
 }
 
