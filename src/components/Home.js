@@ -106,25 +106,15 @@ const Home = ({
 			},
 		})
 			.then((response) => response.json())
-			.then(async (data) => {
-				const newGifs = await data.results.map(async (gif) => {
-					const docSnap = await getDoc(doc(db, 'gif-data', gif.id));
-					if (docSnap.exists()) {
-						return {
-							id: gif.id,
-							url: gif.media_formats.gif.url,
-							// likes: docSnap.data().usersLiked,
-						};
-					} else {
-						await setDoc(doc(db, 'gif-data', gif.id), {
+			.then((data) => {
+				const newGifs = data.results.map((gif) => {
+					getDoc(doc(db, 'gif-data', gif.id)).then((docSnap) => {
+						if (docSnap.exists()) return;
+						setDoc(doc(db, 'gif-data', gif.id), {
 							usersLiked: [],
 						});
-						return {
-							id: gif.id,
-							url: gif.media_formats.gif.url,
-							// likes: 0,
-						};
-					}
+					});
+					return { id: gif.id, url: gif.media_formats.gif.url };
 				});
 				pos.current = data.next;
 				setGifUrls((prevGifs) => [...prevGifs, ...newGifs]);

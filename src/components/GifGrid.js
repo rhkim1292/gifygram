@@ -29,10 +29,22 @@ const GifGrid = ({
 			const gifData = docSnap.data();
 			if (gifData.usersLiked.includes(userData.current.uid)) {
 				console.log('setting unlike button');
-				likeButton = <LikeButton gifId={gifId} likeStatus={true} />;
+				likeButton = (
+					<LikeButton
+						gifId={gifId}
+						likeStatus={true}
+						userData={userData}
+					/>
+				);
 			} else {
 				console.log('setting like button');
-				likeButton = <LikeButton gifId={gifId} likeStatus={false} />;
+				likeButton = (
+					<LikeButton
+						gifId={gifId}
+						likeStatus={false}
+						userData={userData}
+					/>
+				);
 			}
 			if (modalIsOpenRef.current)
 				setModalContent(

@@ -1,14 +1,34 @@
+import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
+import { db } from '../index.js';
 
-const LikeButton = ({ gifId, likeStatus }) => {
+const LikeButton = ({ gifId, likeStatus, userData }) => {
 	const [liked, setLiked] = useState(likeStatus);
 
 	const handleUnlikeClick = () => {
 		setLiked(false);
 	};
 
-	const handleLikeClick = () => {
+	const handleLikeClick = async () => {
 		setLiked(true);
+		console.log('Liked gif ' + gifId);
+		// getDoc(doc(db, 'gif-data', gifId)).then((docSnap) => {
+		// 	if (!docSnap.exists()) return;
+		// 	console.log(docSnap.data());
+		// });
+		let docSnap = await getDoc(doc(db, 'gif-data', gifId));
+		const gifData = docSnap.data();
+		console.log(gifData);
+		let newUsersLiked = [...gifData.usersLiked];
+		const uid = userData.current.uid;
+		if (newUsersLiked.indexOf(uid) === -1) {
+			newUsersLiked.push(uid);
+		} else {
+			throw Error('This user has already liked this gif!');
+		}
+		await setDoc(doc(db, 'gif-data', gifId), {
+			usersLiked: [...newUsersLiked],
+		});
 	};
 
 	return liked ? (
