@@ -1,28 +1,42 @@
 import { getDoc, doc, setDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '../index.js';
 
 const LikeButton = ({ gifId, likeStatus, userData }) => {
 	const [liked, setLiked] = useState(likeStatus);
+	const [newUsersLiked, setNewUsersLiked] = useState(null);
 
-	const handleUnlikeClick = () => {
+	useEffect(() => {
+		const fetchGifData = async () => {
+			const docSnap = await getDoc(doc(db, 'gif-data', gifId));
+			setNewUsersLiked([...docSnap.data().usersLiked]);
+		};
+		fetchGifData();
+	}, [gifId]);
+
+	const handleUnlikeClick = async () => {
 		setLiked(false);
+		console.log('Unliked gif ' + gifId);
+		const uid = userData.current.uid;
+		const idxOfUser = newUsersLiked.indexOf(uid);
+		if (idxOfUser !== -1) {
+			newUsersLiked.splice(idxOfUser, 1);
+			setNewUsersLiked(newUsersLiked);
+		} else {
+			throw Error('This user has not liked this gif yet!');
+		}
+		await setDoc(doc(db, 'gif-data', gifId), {
+			usersLiked: [...newUsersLiked],
+		});
 	};
 
 	const handleLikeClick = async () => {
 		setLiked(true);
 		console.log('Liked gif ' + gifId);
-		// getDoc(doc(db, 'gif-data', gifId)).then((docSnap) => {
-		// 	if (!docSnap.exists()) return;
-		// 	console.log(docSnap.data());
-		// });
-		let docSnap = await getDoc(doc(db, 'gif-data', gifId));
-		const gifData = docSnap.data();
-		console.log(gifData);
-		let newUsersLiked = [...gifData.usersLiked];
 		const uid = userData.current.uid;
 		if (newUsersLiked.indexOf(uid) === -1) {
 			newUsersLiked.push(uid);
+			setNewUsersLiked(newUsersLiked);
 		} else {
 			throw Error('This user has already liked this gif!');
 		}
