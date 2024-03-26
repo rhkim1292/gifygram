@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Navbar from './Navbar.js';
-import Home from './Home.js';
-import Chat from './Chat.js';
-import Profile from './Profile.js';
-import Modal from './Modal.js';
+import Navbar from './Navbar.jsx';
+import Home from './Home.jsx';
+import Chat from './Chat.jsx';
+import Profile from './Profile.jsx';
+import Modal from './Modal.jsx';
 import '../styles/MainUI.css';
 import { useEffect, useRef, useState } from 'react';
 

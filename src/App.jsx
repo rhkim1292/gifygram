@@ -1,11 +1,11 @@
 import firebase from 'firebase/compat/app';
 import { Routes, Route } from 'react-router-dom';
-import LoginUI from './components/LoginUI.js';
+import LoginUI from './components/LoginUI.jsx';
 import { useEffect, useRef, useState } from 'react';
-import MainUI from './components/MainUI.js';
-import Loading from './components/Loading.js';
+import MainUI from './components/MainUI.jsx';
+import Loading from './components/Loading.jsx';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
-import { db } from './index.js';
+import { db } from './index.jsx';
 
 function App() {
 	const userData = useRef(null);

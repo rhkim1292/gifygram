@@ -1,9 +1,9 @@
 import '../styles/GifGrid.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import LikeButton from './LikeButton.js';
+import LikeButton from './LikeButton.jsx';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '..';
+import { db } from '../index.jsx';
 
 const GifGrid = ({
 	userData,

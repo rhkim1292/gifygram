@@ -1,6 +1,6 @@
 import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { db } from '../index.js';
+import { db } from '../index.jsx';
 
 const LikeButton = ({ gifId, likeStatus, userData }) => {
 	const [liked, setLiked] = useState(likeStatus);

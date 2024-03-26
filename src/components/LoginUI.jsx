@@ -2,7 +2,7 @@ import firebase from 'firebase/compat/app';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { useEffect } from 'react';
-import { uiConfig } from '../index.js';
+import { uiConfig } from '../index.jsx';
 import '../styles/LoginUI.css';
 import gifygramLogo from '../images/gifygram-logo.png';
 

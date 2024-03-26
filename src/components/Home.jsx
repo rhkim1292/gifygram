@@ -1,9 +1,9 @@
 import '../styles/Home.css';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import GifGrid from './GifGrid.js';
+import GifGrid from './GifGrid.jsx';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { db } from '../index.js';
+import { db } from '../index.jsx';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const Home = ({
